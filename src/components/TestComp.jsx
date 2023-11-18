@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
 import samplePDF from "../assets/react_protected.pdf";
+import { Document, Page } from "react-pdf";
 import "../App.css";
-import { Document, Page, pdfjs } from "react-pdf/dist/esm/entry.webpack";
+import { pdfjs } from "react-pdf";
 
-const url = `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-pdfjs.GlobalWorkerOptions.workerSrc = url;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.js",
+  import.meta.url
+).toString();
 
 function MyApp() {
   const [numPages, setNumPages] = useState();
@@ -22,7 +25,7 @@ function MyApp() {
       onScroll={() => {
         setPageNumber(
           Math.ceil(
-            (scrollRef.current.scrollTop + 16 * numPages) /
+            (scrollRef.current.scrollTop + 16*numPages) /
               (scrollRef.current.clientHeight - 60)
           )
         );
