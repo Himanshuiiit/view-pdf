@@ -4,10 +4,12 @@ import { Document, Page } from "react-pdf";
 import "../App.css";
 import { pdfjs } from "react-pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.js",
-  import.meta.url
-).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.2.16.105.js"
+
+// console.log(new URL(
+//   "pdfjs-dist/build/pdf.worker.min.js",
+//   import.meta.url
+// ).toString());
 
 function MyApp() {
   const [numPages, setNumPages] = useState();
